@@ -3,7 +3,12 @@ document.getElementById("year").textContent =
     new Date().getFullYear();
 
 
-// Contact / Feedback form
+// Google Apps Script URL
+const SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbyqnc4xMLwgoJIk-Rj5DUR6IOiE27r0EntL9vbTOKhFuIrgJch4_w6YC5yGU0A6-x20WQ/exec";
+
+
+// Feedback form
 const contactForm =
     document.getElementById("contactForm");
 
@@ -39,18 +44,23 @@ contactForm.addEventListener("submit", async function(event) {
 
     try {
 
-        await fetch(
-            "https://script.google.com/macros/s/AKfycbzioiyO4LV1abfNQLItY-oV5h4URCGURdqN7hzkns7h_BGCnf9GK7rCG2_vDGvGVNAeSg/exec",
-            {
-                method: "POST",
-                mode: "no-cors",
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    message: message
-                })
-            }
-        );
+        await fetch(SCRIPT_URL, {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                message: message
+            })
+
+        });
 
 
         formMessage.textContent =
