@@ -24,7 +24,6 @@ contactForm.addEventListener("submit", async function(event) {
         document.getElementById("formMessage");
 
 
-    // Check empty fields
     if (!name || !email || !message) {
 
         formMessage.textContent =
@@ -44,7 +43,7 @@ contactForm.addEventListener("submit", async function(event) {
             "https://script.google.com/macros/s/AKfycbzioiyO4LV1abfNQLItY-oV5h4URCGURdqN7hzkns7h_BGCnf9GK7rCG2_vDGvGVNAeSg/exec",
             {
                 method: "POST",
-
+                mode: "no-cors",
                 body: JSON.stringify({
                     name: name,
                     email: email,
